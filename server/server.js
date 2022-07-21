@@ -32,6 +32,22 @@ const setupServer = () => {
         res.send(err).status(404);
       }});
 
+      app.post("/api/user", async (req, res) => {
+        const { email, first_name, last_name, username} = req.body;
+        try {
+          await db("users")
+            .insert({
+              email: email,
+              first_name: first_name,
+              last_name: last_name,
+              username: username
+            })
+          res.status(204).end();
+        } catch(err){
+          res.send(err).status(404)
+        }
+      });
+
       app.patch("/api/user/:username",  async (req, res) => {
         const {username} = req.params;
         const edits = req.body;
@@ -44,21 +60,19 @@ const setupServer = () => {
           res.send(err).status(404);
         }});
 
-  app.post("/api/user", async (req, res) => {
-    const { email, first_name, last_name, username} = req.body;
-    try {
-      await db("users")
-        .insert({
-          email: email,
-          first_name: first_name,
-          last_name: last_name,
-          username: username
-        })
-      res.status(204).end();
-    } catch(err){
-      res.send(err).status(404)
-    }
-  });
+        app.delete("/api/user/:username",  async (req, res) => {
+          const {username} = req.params;
+          try {
+            await db("users")
+            .where("username", username)
+            .del()
+            .timeout(1500);
+            res.status(204).end();
+            } catch(err){
+            res.send(err).status(404);
+          }});
+
+
 
    return app;
 };
