@@ -17,7 +17,6 @@ const setupServer = () => {
       res.send(err).status(404);
     }});
 
-
     app.get("/api/user/:username",  async (req, res) => {
       const {username} = req.params;
       console.log("user by username endpoint called");
@@ -32,6 +31,18 @@ const setupServer = () => {
         } catch(err){
         res.send(err).status(404);
       }});
+
+      app.patch("/api/user/:username",  async (req, res) => {
+        const {username} = req.params;
+        const edits = req.body;
+        try {
+          await db("users")
+          .where("username", username)
+          .update(edits);
+          res.status(204).end();
+          } catch(err){
+          res.send(err).status(404);
+        }});
 
   app.post("/api/user", async (req, res) => {
     const { email, first_name, last_name, username} = req.body;
