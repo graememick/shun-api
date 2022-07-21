@@ -13,27 +13,31 @@ const setupServer = () => {
       .select("*")
       .timeout(1500);
       res.send(users).status(204);
-      console.log(users)
       } catch(err){
       res.send(err).status(404);
     }});
 
 
-  app.get("/test", (req, res) => {
-    res.send("hello world").status(200)
-  })
+    // app.get("/api/users/:name",  async (req, res) => {
+    //   try {
+    //     const users = await db("users")
+    //     .select("*")
+    //     .timeout(1500);
+    //     res.send(users).status(204);
+    //     } catch(err){
+    //     res.send(err).status(404);
+    //   }});
 
   app.post("/api/user", async (req, res) => {
     const { email, first_name, last_name } = req.body;
-    console.log("body:", req.body);
-    await db("users")
-    .insert({
-      email: email,
-      first_name: first_name,
-      last_name: last_name
-    })
     try {
-
+      await db("users")
+        .insert({
+          email: email,
+          first_name: first_name,
+          last_name: last_name
+        })
+      res.status(204).end();
     } catch(err){
       res.send(err).status(404)
     }
