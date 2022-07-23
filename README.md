@@ -24,7 +24,7 @@ This was created during my time as a student at Code Chrysalis.
 
     Status code: 200
 
-   [
+     [
     {
         "id": 1,
         "email": "joni@example.com",
@@ -38,8 +38,18 @@ This was created during my time as a student at Code Chrysalis.
         "first_name": "Richard",
         "last_name": "Carpenter",
         "username": "Thecarpenters"
+    },
+    {
+        "id": 2,
+        "email": "tands@example.com",
+        "first_name": "Putney",
+        "last_name": "Swope",
+        "username": "Truthandsoul"
     }
 ]
+
+
+  
 
 ## Retreive a single user by username
 ### Request
