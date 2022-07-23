@@ -18,7 +18,7 @@ router.get("/:username", async (req, res) => {
     } = req.params;
     try {
         const user = await Users.findOne(username)
-        res.send(user).status(204);
+        res.send(user).status(200);
     } catch (err) {
         res.send(err).status(404);
     }
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
     } = req.body;
     try {
         await Users.create(email, first_name, last_name, username)
-        res.status(204).end();
+        res.status(201).end();
     } catch (err) {
         res.send(err).status(404)
     }
