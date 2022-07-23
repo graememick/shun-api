@@ -104,3 +104,38 @@ This was created during my time as a student at Code Chrysalis.
 ### Example Response
 
         Status code: 204
+
+## Retreive a single single recipe by recipe name
+### Request
+
+`GET /api/recipes/{name}`
+
+### Example Response
+
+    Status code: 200
+
+     {
+    "id": 4,
+    "user_id": 1,
+    "name": "Pot-au-feu",
+    "description": "Simple French soup",
+    "entry_created": "2022-07-22T15:00:00.000Z",
+    "entry_posted": null,
+    "ingredients": [
+        {
+            "name": "Bacon",
+            "unit": "grams",
+            "amount": "170.00"
+        },
+        {
+            "name": "Onions",
+            "unit": "whole",
+            "amount": "1.00"
+        },
+        {
+            "name": "Carrots",
+            "unit": "whole",
+            "amount": "0.50"
+        }
+        ]
+     }
