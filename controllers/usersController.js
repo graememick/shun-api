@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db/knex");
+const Users = require("../models/users")
 
 router.get("/", async (req, res) => {
     try {
-        const users = await db("users")
-            .select("*")
-            .timeout(1500);
-        res.send(users).status(204);
+        const users = await Users.findMany()
+        res.send(users).status(200);
     } catch (err) {
         res.send(err).status(404);
     }
@@ -17,14 +16,8 @@ router.get("/:username", async (req, res) => {
     const {
         username
     } = req.params;
-    console.log("user by username endpoint called");
-    console.log(req.params);
     try {
-        const user = await db("users")
-            .select("*")
-            .where("username", username)
-            .first()
-            .timeout(1500);
+        const user = await Users.findOne(username)
         res.send(user).status(204);
     } catch (err) {
         res.send(err).status(404);
@@ -39,13 +32,7 @@ router.post("/", async (req, res) => {
         username
     } = req.body;
     try {
-        await db("users")
-            .insert({
-                email: email,
-                first_name: first_name,
-                last_name: last_name,
-                username: username
-            })
+        await Users.create(email, first_name, last_name, username)
         res.status(204).end();
     } catch (err) {
         res.send(err).status(404)
@@ -58,9 +45,7 @@ router.patch("/:username", async (req, res) => {
     } = req.params;
     const edits = req.body;
     try {
-        await db("users")
-            .where("username", username)
-            .update(edits);
+        await Users.update(username, edits)
         res.status(204).end();
     } catch (err) {
         res.send(err).status(404);
@@ -72,10 +57,7 @@ router.delete("/:username", async (req, res) => {
         username
     } = req.params;
     try {
-        await db("users")
-            .where("username", username)
-            .del()
-            .timeout(1500);
+        await Users.delete(username)
         res.status(204).end();
     } catch (err) {
         res.send(err).status(404);
