@@ -50,7 +50,7 @@ This was created during my time as a student at Code Chrysalis.
 
     Status code: 200
 
-   [
+     [
     {
         "id": 2,
         "email": "tands@example.com",
@@ -59,6 +59,8 @@ This was created during my time as a student at Code Chrysalis.
         "username": "Truthandsoul"
     }
 ]
+
+  
 
 ## Create a new user
 
