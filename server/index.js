@@ -6,7 +6,9 @@ const app = setupServer();
 
 const server = () => {
 	try {
+		//maybe run migrations here or use cli on heroku
 		app.listen(PORT, () => {
+		
 			console.log(`server is listening on http://localhost:${PORT}`)
 		})
 
