@@ -36,7 +36,7 @@ class Recipes {
         }
     };
 
-    async create(id,
+    async create(
         user_id,
         name,
         description,
@@ -45,7 +45,6 @@ class Recipes {
         try {
             await this.db("recipes")
             .insert({
-                id,
                 user_id,
                 name,
                 description,

@@ -26,7 +26,6 @@ router.get("/:name", async (req, res) => {
 
 router.post("/", async (req, res) => {
     const {
-        id,
         user_id,
         name,
         description,
@@ -34,7 +33,7 @@ router.post("/", async (req, res) => {
         entry_posted
     } = req.body;
     try {
-        await Recipes.create(id,
+        await Recipes.create(
             user_id,
             name,
             description,
