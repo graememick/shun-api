@@ -3,6 +3,16 @@ class Recipes {
         this.db = require("../db/knex");
     };
 
+    getAll(limit = 100) {
+        try {
+            return this.db("recipes")
+            .select("*")
+            .limit(limit);
+        } catch (err) {
+            return err;
+        }
+       
+      };
 
     async findOne (name){
         try {
