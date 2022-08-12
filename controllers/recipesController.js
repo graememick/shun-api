@@ -24,4 +24,51 @@ router.get("/:name", async (req, res) => {
     }
 });
 
+router.post("/", async (req, res) => {
+    const {
+        id,
+        user_id,
+        name,
+        description,
+        entry_created,
+        entry_posted
+    } = req.body;
+    try {
+        await Recipes.create(id,
+            user_id,
+            name,
+            description,
+            entry_created,
+            entry_posted)
+        res.status(201).end();
+    } catch (err) {
+        res.send(err).status(404)
+    }
+});
+
+router.patch("/:name", async (req, res) => {
+    const {
+        name
+    } = req.params;
+    const edits = req.body;
+    try {
+        await Recipes.update(name, edits)
+        res.status(204).end();
+    } catch (err) {
+        res.send(err).status(404);
+    }
+});
+
+router.delete("/:name", async (req, res) => {
+    const {
+        name
+    } = req.params;
+    try {
+        await Recipes.delete(name)
+        res.status(204).end();
+    } catch (err) {
+        res.send(err).status(404);
+    }
+});
+
 module.exports = router;

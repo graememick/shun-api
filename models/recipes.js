@@ -36,6 +36,56 @@ class Recipes {
         }
     };
 
+    async create(id,
+        user_id,
+        name,
+        description,
+        entry_created,
+        entry_posted) {
+        try {
+            await this.db("recipes")
+            .insert({
+                id,
+                user_id,
+                name,
+                description,
+                entry_created,
+                entry_posted
+            } )
+            .timeout(1500);
+        return "Created new recipe!"
+
+    } catch (err){
+        return err;
+    }
+};
+
+async update(username, edits){
+    try {
+        await this.db("users")
+        .where("username", username)
+        .update(edits)
+        .timeout(1500);
+    return "Updated user!"
+
+} catch (err){
+    return err;
+}
+};
+
+async delete(username){
+    try {
+        await this.db("users")
+        .where("username", username)
+        .del()
+        .timeout(1500);
+    return "Deleted user!"
+
+} catch (err){
+    return err;
+}
+};
+
 }
 
 module.exports = new Recipes();
