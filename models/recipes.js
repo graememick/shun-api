@@ -60,10 +60,10 @@ class Recipes {
     }
 };
 
-async update(username, edits){
+async update(name, edits){
     try {
-        await this.db("users")
-        .where("username", username)
+        await this.db("recipes")
+        .where("name", name)
         .update(edits)
         .timeout(1500);
     return "Updated user!"
@@ -73,10 +73,10 @@ async update(username, edits){
 }
 };
 
-async delete(username){
+async delete(name){
     try {
-        await this.db("users")
-        .where("username", username)
+        await this.db("recipes")
+        .where("name", name)
         .del()
         .timeout(1500);
     return "Deleted user!"
