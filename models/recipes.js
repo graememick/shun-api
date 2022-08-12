@@ -37,19 +37,26 @@ class Recipes {
     };
 
     async create(
+        id,
         user_id,
         name,
         description,
         entry_created,
-        entry_posted) {
+        entry_posted,
+        season,
+        intructions
+        ) {
         try {
             await this.db("recipes")
             .insert({
+                id,
                 user_id,
                 name,
                 description,
                 entry_created,
-                entry_posted
+                entry_posted,
+                season,
+                intructions
             } )
             .timeout(1500);
         return "Created new recipe!"

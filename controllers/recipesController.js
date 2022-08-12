@@ -26,19 +26,26 @@ router.get("/:name", async (req, res) => {
 
 router.post("/", async (req, res) => {
     const {
+        id,
         user_id,
         name,
         description,
         entry_created,
-        entry_posted
+        entry_posted,
+        season,
+        intructions
     } = req.body;
     try {
         await Recipes.create(
+            id,
             user_id,
             name,
             description,
             entry_created,
-            entry_posted)
+            entry_posted,
+            season,
+            intructions
+            )
         res.status(201).end();
     } catch (err) {
         res.send(err).status(404)
