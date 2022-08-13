@@ -33,7 +33,8 @@ router.post("/", async (req, res) => {
         entry_created,
         entry_posted,
         season,
-        intructions
+        intructions,
+        images_url
     } = req.body;
     try {
         await Recipes.create(
@@ -44,7 +45,8 @@ router.post("/", async (req, res) => {
             entry_created,
             entry_posted,
             season,
-            intructions
+            intructions,
+            images_url
             )
         res.status(201).end();
     } catch (err) {
