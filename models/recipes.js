@@ -44,7 +44,8 @@ class Recipes {
         entry_created,
         entry_posted,
         season,
-        intructions
+        intructions,
+        images_url 
         ) {
         try {
             await this.db("recipes")
@@ -56,7 +57,8 @@ class Recipes {
                 entry_created,
                 entry_posted,
                 season,
-                intructions
+                intructions,
+                images_url 
             } )
             .timeout(1500);
         return "Created new recipe!"
